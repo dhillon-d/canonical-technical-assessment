@@ -1,28 +1,14 @@
 import requests
 import gzip
-import shutil
 import argparse
 import sys
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    "architecture", help="for a given architecture, display the top 10 packages with the  most files associated with them")
+    "architecture", help="For a given architecture, display the top 10 packages with the  most files associated with them. For example 'python main.py amd64', see a full list at 'http://ftp.uk.debian.org/debian/dists/stable/main/'.")
 args = parser.parse_args()
 
 url = f'http://ftp.uk.debian.org/debian/dists/stable/main/Contents-{args.architecture}.gz'
-# target_path = 'Contents-amd64.gz'
-
-# response = requests.get(url, stream=True)
-# if response.status_code == 200:
-#     with open(target_path, 'wb') as f:
-#         f.write(response.raw.read())
-
-# with gzip.open(f'{target_path}', 'rb') as f_in:
-#     with open('yeet.txt', 'wb') as f_out:
-#         shutil.copyfileobj(f_in, f_out)
-
-# with gzip.open(f'{target_path}', 'rt') as f:
-#     lines = f.readlines()
 
 response = requests.get(url, stream=True)
 try:
