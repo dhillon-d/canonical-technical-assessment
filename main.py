@@ -1,8 +1,15 @@
 import requests
 import gzip
 import shutil
+import argparse
+import sys
 
-url = 'http://ftp.uk.debian.org/debian/dists/stable/main/Contents-amd64.gz'
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "architecture", help="for a given architecture, display the top 10 packages with the  most files associated with them")
+args = parser.parse_args()
+
+url = f'http://ftp.uk.debian.org/debian/dists/stable/main/Contents-{args.architecture}.gz'
 # target_path = 'Contents-amd64.gz'
 
 # response = requests.get(url, stream=True)
@@ -18,6 +25,11 @@ url = 'http://ftp.uk.debian.org/debian/dists/stable/main/Contents-amd64.gz'
 #     lines = f.readlines()
 
 response = requests.get(url, stream=True)
+try:
+    response.raise_for_status()
+except requests.exceptions.HTTPError as e:
+    print(e)
+    sys.exit(1)
 content = response.raw
 
 with gzip.open(content, 'rt') as f:
