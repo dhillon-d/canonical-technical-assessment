@@ -17,9 +17,9 @@ try:
 except requests.exceptions.HTTPError as e:
     print(e)
     sys.exit(1)
-content = response.raw
 
 # read response into memory
+content = response.raw
 with gzip.open(content, 'rt') as f:
     lines = f.readlines()
 
