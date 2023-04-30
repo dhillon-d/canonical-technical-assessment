@@ -2,3 +2,4 @@ venv/
 *.gz
 *.txt
 !requirements.txt
+.vscode
