@@ -10,6 +10,7 @@
 
 **How to use**
 
+- Install dependencies `pip install -r requirements.txt`, recommend using virtual env
 - Run the main program to get an output of packages with most files `python main.py <architecture>`, for example `python main.py amd64`
 
 **Testing**
